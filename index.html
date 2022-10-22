@@ -10,8 +10,34 @@
   <body>
     <header><h1>Coding Quiz</h1></header>
     <main>
-      <section>
-        <p>Try answering these coding questions within the time limit! Careful though, if you answer one incorrectly, you'll lose ten seconds to your time. Good luck, have fun!</p>
+      <section class="gamestart">
+        <p>
+          Try answering these coding questions within the time limit! Careful
+          though, if you answer one incorrectly, you'll lose ten seconds to your
+          time. Good luck, have fun!
+        </p>
+        <button class="playgame">Start Game</button>
+      </section>
+      <section class="highscores">
+        <h2>Highscores</h2>
+        <p class="highscores_display"></p>
+        <button class="highscores_restart">Restart Game</button>
+        <button class="highscores_clearscores">Clear Highscores</button>
+      </section>
+      <section class="gameend">
+        <h2>Game Over!</h2>
+        <p>Your final score is <span class="score"></span></p>
+        <p>
+          <label for="gameend_initials">Enter your initials:</label>
+          <input id="gameend_initials" type="text" placeholder="Your initials here"/>
+          <button class="gameend_submit_intials">Submit</button>
+        </p>
+      </section>
+      <section class="gameboard">
+        <div class="gameboard_timer">Time left: <span class="gameboard_timeleft"></span></div>
+        <div class="gameboard_questions"></div>
+        <div class="gameboard_answers"></div>
+        <div class="gameboard_result"></div>
       </section>
     </main>
     <script src="./assets/script.js"></script>

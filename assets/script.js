@@ -17,6 +17,9 @@
     var theElement = document.querySelector([CSS Selector for your element]);
  */
 
+var startGameButtonEl = document.querySelector(".playgame");
+
+
 /*
  3. Declare variables: state
     - What are the datq that need to be kept track of? 
@@ -83,44 +86,50 @@ startGameButtonEl.addEventListener("click", handleClickStart);
 
 // Event: Timer tick
 
-function handleTimerTick(event) {
-  console.log("Timer ticked");
-}
+// function handleTimerTick(event) {
+//   console.log("Timer ticked");
+//   timer--;
 
-// Event: Answer question
+//   timerEl.textContent = timeLeft;
+//   if(timeLeft === 0) {
+//     handleGameEnd();
+//   }
+// }
 
-function handleAnswer(event) {
-  console.log("Question answered");
-}
-answerButtonEl.addEventListener("click", handleAnswer);
+// // Event: Answer question
 
-// Event: Game ends
-function handleGameEnd() {
-  console.log("Game ended");
-}
+// function handleAnswer(event) {
+//   console.log("Question answered");
+// }
+// answerButtonEl.addEventListener("click", handleAnswer);
 
-// Event: Submit name & high score
+// // Event: Game ends
+// function handleGameEnd() {
+//   console.log("Game ended");
+// }
 
-function handleHighScore(event) {
-  console.log("High score submitted");
-}
-document.addEventListener("click", handleHighScore);
+// // Event: Submit name & high score
 
-// Event: Return to game start
+// function handleHighScore(event) {
+//   console.log("High score submitted");
+// }
+// document.addEventListener("click", handleHighScore);
 
-function handleGameRestart(event) {
-  console.log("Game restarted");
-}
-document.addEventListener("click", handleGameRestart);
+// // Event: Return to game start
 
-/*
- 6. Refactor
-    - identify tasks that can be broken into their own functions, outside the event handlers
-    - Are there tasks that more than one event handler share?
-*/
+// function handleGameRestart(event) {
+//   console.log("Game restarted");
+// }
+// document.addEventListener("click", handleGameRestart);
 
-function updateHighScores(){
+// /*
+//  6. Refactor
+//     - identify tasks that can be broken into their own functions, outside the event handlers
+//     - Are there tasks that more than one event handler share?
+// */
 
-}
+// function updateHighScores(){
+
+// }
 
 init();
