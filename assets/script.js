@@ -16,16 +16,10 @@ var highScoresEl = document.querySelector(".highScores");
 var score = 0;
 var timer = null;
 var timeLeft = 0;
-var currentQuestionIndex = null;
-var currentGuess = null;
 
 // Declare variables: constants
 
-var kDuration = 75;
-var kStorageKey ="timedCodingQuiz-scores";
-var kQuestionList = [
-
-];
+var kDuration = 10;
 
 // Identify events
 
@@ -54,11 +48,7 @@ if (!timer) {
   // show game board
   showElement(gameBoardEl);
   // choose question
-  // set current guess
-  /////////////////
-  // reset display
-  // show gameboard
-
+  
 }
 }
 startGameButtonEl.addEventListener("click", handleClickStart);
@@ -66,8 +56,8 @@ startGameButtonEl.addEventListener("click", handleClickStart);
 // Event: Timer tick
 
 function handleTimerTick(event) {
-  timeLeft--;
   console.log("Timer ticked", timeLeft);
+  timeLeft--;
 
   timerEl.textContent = "Time left: " + timeLeft;
   if(timeLeft === 0) {
@@ -93,6 +83,9 @@ function handleGameEnd() {
 
 function handleHighScore(event) {
   console.log("Initials submitted");
+
+  hideElement(gameEndEl);
+  showElement(highScoresEl);
 }
 submitInitialsButtonEl.addEventListener("click", handleHighScore);
 
@@ -107,6 +100,10 @@ clearScoresButtonEl.addEventListener("click", handleClearScores);
 
 function handleGameRestart(event) {
   console.log("Game restarted");
+
+  hideElement(highScoresEl);
+  showElement(startGameEl);
+  timerEl.textContent = "Time left: " + 10;
 }
 restartGameButtonEl.addEventListener("click", handleGameRestart);
 
