@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <header>
+    <header class="startGame">
       <h1>Coding Quiz</h1>
       <p>
         Try answering these coding questions within the time limit! Careful
         though, if you answer one incorrectly, you'll lose ten seconds to your
         time. Good luck, have fun!
       </p>
-      <button id="startGame">Start Game</button>
+      <button id="startGameButton">Start Game</button>
     </header>
     <main>
       <section class="highScores">
@@ -38,10 +38,9 @@
         </p>
       </section>
       <section class="gameBoard">
-        <h2 class="gameBoard_timer">Time left: <span id="timeLeft"></span></h2>
+        <h2 class="gameBoard_timer">Time left: <span id="timeLeft">75</span></h2>
         <div class="gameBoard_questions"></div>
         <div class="gameBoard_answers"></div>
-        <div class="gameBoard_result"></div>
       </section>
     </main>
     <script src="./assets/script.js"></script>
