@@ -17,8 +17,13 @@
     var theElement = document.querySelector([CSS Selector for your element]);
  */
 
-var startGameButtonEl = document.querySelector(".playgame");
-
+var startGameButtonEl = document.querySelector("#startGame");
+var submitInitialsButtonEl = document.querySelector("#gameEnd_submit_intials");
+var restartGameButtonEl = document.querySelector("#highScores_restart");
+var clearScoresButtonEl = document.querySelector("#highScores_clearScores");
+var timerLeftEl = document.querySelector("#timeLeft");
+var timerEl = document.querySelector(".gameBoard_timer");
+var gameBoardEl = document.querySelector(".gameBoard");
 
 /*
  3. Declare variables: state
@@ -49,6 +54,9 @@ var currentGuess = null;
 
 var kDuration = 75;
 var kStorageKey ="timedCodingQuiz-scores";
+var kQuestionList = [
+
+];
 
 /*
  5. Identify events
@@ -75,52 +83,81 @@ function init() {
   if(highscores) {
 
   }
+
+  updateHighScores();
 }
 
 // Event: Click start
 
 function handleClickStart(event) {
   console.log("Game Started");
+
+if (!timer) {
+  // set the time left
+  timeLeft = kDuration;
+  // start a timer
+  timer = setInterval(handleTimerTick, 1000);
+  // choose question
+  // set current guess
+  // hide start button
+  hideElement(startGameButtonEl);
+  /////////////////
+  // reset display
+  // hide any result message
+  hideElement();
+  // show timer 
+  showElement(timerEl);
+  // show gameboard
+
+}
 }
 startGameButtonEl.addEventListener("click", handleClickStart);
 
 // Event: Timer tick
 
-// function handleTimerTick(event) {
-//   console.log("Timer ticked");
-//   timer--;
+function handleTimerTick(event) {
+  console.log("Timer ticked");
+  timer--;
 
-//   timerEl.textContent = timeLeft;
-//   if(timeLeft === 0) {
-//     handleGameEnd();
-//   }
-// }
+  timerEl.textContent = timeLeft;
+  if(timeLeft === 0) {
+    handleGameEnd();
+  }
+}
 
-// // Event: Answer question
+// Event: Answer question
 
 // function handleAnswer(event) {
 //   console.log("Question answered");
 // }
 // answerButtonEl.addEventListener("click", handleAnswer);
 
-// // Event: Game ends
-// function handleGameEnd() {
-//   console.log("Game ended");
-// }
+// Event: Game ends
 
-// // Event: Submit name & high score
+function handleGameEnd() {
+  console.log("Game ended");
+}
 
-// function handleHighScore(event) {
-//   console.log("High score submitted");
-// }
-// document.addEventListener("click", handleHighScore);
+// Event: Submit name & high score
 
-// // Event: Return to game start
+function handleHighScore(event) {
+  console.log("Initials submitted");
+}
+submitInitialsButtonEl.addEventListener("click", handleHighScore);
 
-// function handleGameRestart(event) {
-//   console.log("Game restarted");
-// }
-// document.addEventListener("click", handleGameRestart);
+// Event: Clear Highscores
+
+function handleClearScores(event) {
+  console.log("Highscores cleared");
+}
+clearScoresButtonEl.addEventListener("click", handleClearScores);
+
+// Event: Return to game start
+
+function handleGameRestart(event) {
+  console.log("Game restarted");
+}
+restartGameButtonEl.addEventListener("click", handleGameRestart);
 
 // /*
 //  6. Refactor
@@ -128,7 +165,17 @@ startGameButtonEl.addEventListener("click", handleClickStart);
 //     - Are there tasks that more than one event handler share?
 // */
 
-// function updateHighScores(){
+function hideElement(el) {
+  el.classList.add("hide");
+}
+
+function showElement(el) {
+  el.classList.remove("hide");
+}
+
+function updateHighScores(){
+
+}
 
 // }
 

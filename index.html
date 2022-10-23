@@ -8,36 +8,40 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <header><h1>Coding Quiz</h1></header>
+    <header>
+      <h1>Coding Quiz</h1>
+      <p>
+        Try answering these coding questions within the time limit! Careful
+        though, if you answer one incorrectly, you'll lose ten seconds to your
+        time. Good luck, have fun!
+      </p>
+      <button id="startGame">Start Game</button>
+    </header>
     <main>
-      <section class="gamestart">
-        <p>
-          Try answering these coding questions within the time limit! Careful
-          though, if you answer one incorrectly, you'll lose ten seconds to your
-          time. Good luck, have fun!
-        </p>
-        <button class="playgame">Start Game</button>
-      </section>
-      <section class="highscores">
+      <section class="highScores">
         <h2>Highscores</h2>
-        <p class="highscores_display"></p>
-        <button class="highscores_restart">Restart Game</button>
-        <button class="highscores_clearscores">Clear Highscores</button>
+        <div class="highScores_display"></div>
+        <button id="highScores_restart">Restart Game</button>
+        <button id="highScores_clearScores">Clear Highscores</button>
       </section>
-      <section class="gameend">
+      <section class="gameEnd">
         <h2>Game Over!</h2>
-        <p>Your final score is <span class="score"></span></p>
+        <p>Your final score is: <span class="score"></span></p>
         <p>
-          <label for="gameend_initials">Enter your initials:</label>
-          <input id="gameend_initials" type="text" placeholder="Your initials here"/>
-          <button class="gameend_submit_intials">Submit</button>
+          <label for="gameEnd_initials">Enter your initials:</label>
+          <input
+            id="gameEnd_initials"
+            type="text"
+            placeholder="Your initials here"
+          />
+          <button id="gameEnd_submit_intials">Submit</button>
         </p>
       </section>
-      <section class="gameboard">
-        <div class="gameboard_timer">Time left: <span class="gameboard_timeleft"></span></div>
-        <div class="gameboard_questions"></div>
-        <div class="gameboard_answers"></div>
-        <div class="gameboard_result"></div>
+      <section class="gameBoard">
+        <h2 class="gameBoard_timer">Time left: <span id="timeLeft"></span></h2>
+        <div class="gameBoard_questions"></div>
+        <div class="gameBoard_answers"></div>
+        <div class="gameBoard_result"></div>
       </section>
     </main>
     <script src="./assets/script.js"></script>
