@@ -3,6 +3,7 @@
 var startGameButtonEl = document.querySelector("#startGameButton");
 var startGameEl = document.querySelector(".startGame");
 var submitInitialsButtonEl = document.querySelector("#gameEnd_submit_intials");
+var highScoresInitials = document.querySelector("#gameEnd_initials");
 var restartGameButtonEl = document.querySelector("#highScores_restart");
 var clearScoresButtonEl = document.querySelector("#highScores_clearScores");
 var timerLeftEl = document.querySelector("#timeLeft");
@@ -16,6 +17,7 @@ var gameResultEl = document.querySelector(".gameBoard_results");
 
 ////// Declare variables: state
 
+var scoreArray = [];
 var score = 0;
 var timer = null;
 var timeLeft = 0;
@@ -133,6 +135,8 @@ var kQuestions = [
 function init() {
   console.log("Game loading...");
 
+  updateHighscores();
+
   hideElement(gameBoardEl);
   hideElement(gameEndEl);
   hideElement(highScoresEl);
@@ -236,7 +240,18 @@ function handleGameEnd() {
 function handleHighScore() {
   console.log("Initials submitted");
 
+  var initials = document.getElementById("gameEnd_initials").value;
+  var highscore = finalScoreEl.innerHTML;
 
+  var initialsHighscore = {initials, highscore};
+
+  scoreArray.push(initialsHighscore);
+
+  localStorage.setItem("Highscores", JSON.stringify(scoreArray));
+
+  // document.getElementById("highScores_display_score").innerHTML = "user: " + initialsHighscore.initials + " score: " + initialsHighscore.highscore;
+
+  
 
   hideElement(gameEndEl);
   showElement(highScoresEl);
@@ -247,6 +262,8 @@ submitInitialsButtonEl.addEventListener("click", handleHighScore);
 
 function handleClearScores() {
   console.log("Highscores cleared");
+
+  
 }
 clearScoresButtonEl.addEventListener("click", handleClearScores);
 
@@ -277,6 +294,11 @@ function hideElement(el) {
 
 function showElement(el) {
   el.classList.remove("hide");
+}
+
+function updateHighscores() {
+  var loadScores = JSON.parse(localStorage.getItem("Highscores"));
+  scoreArray = loadScores;
 }
 
 init();
