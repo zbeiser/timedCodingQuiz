@@ -11,9 +11,9 @@
     <header class="startGame">
       <h1>Coding Quiz</h1>
       <p>
-        Try answering these coding questions within the time limit! Careful
-        though, if you answer one incorrectly, you'll lose ten seconds to your
-        time. Good luck, have fun!
+        Try answering these coding-related questions correctly within the time
+        limit! Careful though, answer one incorrectly and you'll lose 5 seconds
+        to your time. Good luck, have fun!
       </p>
       <button id="startGameButton">Start Game</button>
     </header>
@@ -24,9 +24,25 @@
         <button id="highScores_restart">Restart Game</button>
         <button id="highScores_clearScores">Clear Highscores</button>
       </section>
+      <section class="gameBoard">
+        <h2>Your score: <span id="score">0</span></h2>
+        <div class="gameBoard_timer">
+          Time left: <span id="timeLeft">60</span>
+        </div>
+        <div class="gameBoard_questions">
+          <p id="question"></p>
+          <ul class="answers">
+            <li id="answer1"></li>
+            <li id="answer2"></li>
+            <li id="answer3"></li>
+            <li id="answer4"></li>
+          </ul>
+        </div>
+        <div class="gameBoard_results"></div>
+      </section>
       <section class="gameEnd">
         <h2>Game Over!</h2>
-        <p>Your final score is: <span class="score"></span></p>
+        <p>Your final score is: <span id="gameEnd_score"></span></p>
         <p>
           <label for="gameEnd_initials">Enter your initials:</label>
           <input
@@ -36,11 +52,6 @@
           />
           <button id="gameEnd_submit_intials">Submit</button>
         </p>
-      </section>
-      <section class="gameBoard">
-        <h2 class="gameBoard_timer">Time left: <span id="timeLeft">10</span></h2>
-        <div class="gameBoard_questions"></div>
-        <div class="gameBoard_results"></div>
       </section>
     </main>
     <script src="./assets/script.js"></script>
