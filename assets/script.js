@@ -15,7 +15,7 @@ var scoreEl = document.querySelector("#score");
 var finalScoreEl = document.querySelector("#gameEnd_score");
 var gameResultEl = document.querySelector(".gameBoard_results");
 
-////// Declare variables: state
+////// Declare variables: state. Highscores, current score, timer, time left, and question counter.
 
 var scoreArray = [];
 var score = 0;
@@ -23,7 +23,7 @@ var timer = null;
 var timeLeft = 0;
 var questionIndex = 0;
 
-////// Declare variables: constants
+////// Declare variables: constants. Timer duration and questions in an array of objects.
 
 var kDuration = 60;
 var kQuestions = [
@@ -129,12 +129,8 @@ var kQuestions = [
   },
 ];
 
-////// Identify events
-
-// Event: Page load
+// Event: Page load. Updates high scores, hides everything except game start screen.
 function init() {
-  console.log("Game loading...");
-
   updateHighscores();
 
   hideElement(gameBoardEl);
@@ -142,16 +138,14 @@ function init() {
   hideElement(highScoresEl);
 }
 
-// Event: Click start
+// Event: Begins timer, hides game start screen and any previous answer result message.
+// Shows game screen, starts questions.
 
 function handleClickStart() {
-  console.log("Game Started");
-  
-// Start timer
   if (!timer) {
     timeLeft = kDuration;
     timer = setInterval(handleTimerTick, 1000);
-    
+
     hideElement(startGameEl);
     hideElement(gameResultEl);
     showElement(gameBoardEl);
@@ -161,10 +155,9 @@ function handleClickStart() {
 }
 startGameButtonEl.addEventListener("click", handleClickStart);
 
-// Event: Timer tick
+// Event: Ticks timer down, displays timer on UI, ends game if it reaches 0.
 
 function handleTimerTick() {
-  console.log("Timer ticked", timeLeft);
   timeLeft--;
 
   timerEl.textContent = "Time left: " + timeLeft;
@@ -173,7 +166,8 @@ function handleTimerTick() {
   }
 }
 
-// Event: Answer questions
+// Event: Matches questions and answers in the questions array to the p and list elements.
+// Clicking on answers handles them accordingly with the next function below.
 
 function handleQuestions() {
   var question = kQuestions[questionIndex];
@@ -196,7 +190,9 @@ function handleQuestions() {
   answer4.addEventListener("click", handleAnswer);
 }
 
-// Event: Validate answers
+// Event: Validates answers, checks if what's clicked matches correctAnswer, displays result.
+// Adds score if it does match, removes time if it doesn't. Moves to next question.
+// Ends game if your questionIndex reaches end of question list length.
 
 function handleAnswer() {
   if (this.innerText === kQuestions[questionIndex].correctAnswer) {
@@ -219,10 +215,9 @@ function handleAnswer() {
   }
 }
 
-// Event: Game ends
+// Event: Game ends, clears timer, sets the final score UI, moves to Game Over screen.
 
 function handleGameEnd() {
-  console.log("Game ended");
   clearInterval(timer);
   timer = null;
 
@@ -232,11 +227,11 @@ function handleGameEnd() {
   showElement(gameEndEl);
 }
 
-// Event: Submit name & high score
+// Event: Submits name & high score. Creates variables for the initials input and final score, stores
+// them in an object variable, pushes that object into the scores array, sets array into the localStorage.
+// Moves to highscore screen.
 
 function handleHighScore() {
-  console.log("Initials submitted");
-
   var initials = document.getElementById("gameEnd_initials").value;
   var highscore = finalScoreEl.innerHTML;
   var initialsHighscore = { initials, highscore };
@@ -245,6 +240,7 @@ function handleHighScore() {
 
   localStorage.setItem("Highscores", JSON.stringify(scoreArray));
 
+  // 249-257 adds the most recent highscore to the UI.
   var score = document.createElement("li");
 
   score.textContent =
@@ -254,28 +250,23 @@ function handleHighScore() {
     scoreArray[scoreArray.length - 1].highscore;
 
   document.getElementById("highScores_display_score").appendChild(score);
-  
 
   hideElement(gameEndEl);
   showElement(highScoresEl);
 }
 submitInitialsButtonEl.addEventListener("click", handleHighScore);
 
-// Event: Clear Highscores
+// Event: Clear highscores from the UI and localStorage.
 
 function handleClearScores() {
-  console.log("Highscores cleared");
-
   localStorage.clear();
   document.getElementById("highScores_display_score").innerHTML = "";
 }
 clearScoresButtonEl.addEventListener("click", handleClearScores);
 
-// Event: Return to game start and reset scores
+// Event: Moves back to game start screen, resets questionIndex, resets scores, resets timer on UI.
 
 function handleGameRestart() {
-  console.log("Game restarted");
-
   hideElement(highScoresEl);
   showElement(startGameEl);
   timerEl.textContent = "Time left: " + 60;
@@ -296,7 +287,8 @@ function showElement(el) {
   el.classList.remove("hide");
 }
 
-// Event: Update the highscore list from the localStorage
+// Event: Update the highscore list from the localStorage. This gets called in the init function on page load.
+// The if statement makes sure the scoreArray doesn't log an error as null if the localStorage is empty.
 
 function updateHighscores() {
   var loadScores = JSON.parse(localStorage.getItem("Highscores"));
@@ -319,4 +311,5 @@ function updateHighscores() {
   }
 }
 
+// Load the game start screen on page load.
 init();
