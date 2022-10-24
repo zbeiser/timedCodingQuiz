@@ -146,19 +146,16 @@ function init() {
 
 function handleClickStart() {
   console.log("Game Started");
-
+  
+// Start timer
   if (!timer) {
-    // set the time left
     timeLeft = kDuration;
-    // start a timer
     timer = setInterval(handleTimerTick, 1000);
-    // hide start screen
+    
     hideElement(startGameEl);
-    // hide game board result
     hideElement(gameResultEl);
-    // show game board
     showElement(gameBoardEl);
-    // choose question
+
     handleQuestions();
   }
 }
@@ -242,15 +239,21 @@ function handleHighScore() {
 
   var initials = document.getElementById("gameEnd_initials").value;
   var highscore = finalScoreEl.innerHTML;
-
-  var initialsHighscore = {initials, highscore};
+  var initialsHighscore = { initials, highscore };
 
   scoreArray.push(initialsHighscore);
 
   localStorage.setItem("Highscores", JSON.stringify(scoreArray));
 
-  // document.getElementById("highScores_display_score").innerHTML = "user: " + initialsHighscore.initials + " score: " + initialsHighscore.highscore;
+  var score = document.createElement("li");
 
+  score.textContent =
+    "user: " +
+    scoreArray[scoreArray.length - 1].initials +
+    " | score: " +
+    scoreArray[scoreArray.length - 1].highscore;
+
+  document.getElementById("highScores_display_score").appendChild(score);
   
 
   hideElement(gameEndEl);
@@ -263,7 +266,8 @@ submitInitialsButtonEl.addEventListener("click", handleHighScore);
 function handleClearScores() {
   console.log("Highscores cleared");
 
-  
+  localStorage.clear();
+  document.getElementById("highScores_display_score").innerHTML = "";
 }
 clearScoresButtonEl.addEventListener("click", handleClearScores);
 
@@ -282,11 +286,7 @@ function handleGameRestart() {
 }
 restartGameButtonEl.addEventListener("click", handleGameRestart);
 
-// /*
-//  6. Refactor
-//     - identify tasks that can be broken into their own functions, outside the event handlers
-//     - Are there tasks that more than one event handler share?
-// */
+// Functions to hide and show HTML elements
 
 function hideElement(el) {
   el.classList.add("hide");
@@ -296,9 +296,27 @@ function showElement(el) {
   el.classList.remove("hide");
 }
 
+// Event: Update the highscore list from the localStorage
+
 function updateHighscores() {
   var loadScores = JSON.parse(localStorage.getItem("Highscores"));
-  scoreArray = loadScores;
+  if (loadScores === null) {
+    scoreArray = [];
+  } else {
+    scoreArray = loadScores;
+  }
+
+  for (var i = 0; i < scoreArray.length; i++) {
+    var score = document.createElement("li");
+
+    score.textContent =
+      "user: " +
+      scoreArray[i].initials +
+      " | score: " +
+      scoreArray[i].highscore;
+
+    document.getElementById("highScores_display_score").appendChild(score);
+  }
 }
 
 init();
