@@ -91,8 +91,6 @@ button {
   border-color: black;
   margin: .5rem;
   padding: .5rem;
-  max-width: fit-content;
-
 }
 
 button:hover, .answers li:hover {
