@@ -16,21 +16,66 @@ body {
   text-align: center;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: .5rem;
+}
+
+header p {
+  max-width: 50%;
+}
+
 button {
   padding: .5rem 1rem;
   font-size: 2rem;
   border: .3rem;
   border-style: solid;
   border-color: black;
+  border-radius: 20%;
+  max-width: fit-content;
 }
 
 #gameEnd_submit_intials {
-  padding: .5rem .5rem;
+  padding: .5rem;
+}
+
+.gameBoard_questions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#question {
+  font-size: 2rem;
+  font-weight: bolder;
+  border-color: azure;
+  border: .5rem;
+  border-style: solid;
+  padding: .8rem;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .answers, #highScores_display_score {
   list-style: none;
   padding: 0;
+  max-width: fit-content;
+}
+
+.highScores_display {
+  display: flex;
+  justify-content: center;
 }
 
 #highScores_display_score {
@@ -47,14 +92,11 @@ button {
   margin: .5rem;
   padding: .5rem;
   max-width: fit-content;
+
 }
 
 button:hover, .answers li:hover {
   cursor: pointer;
-}
-
-#question {
-
 }
 
 input {
@@ -64,4 +106,3 @@ input {
   border-style: solid;
   border-color: black;
 }
-
