@@ -199,7 +199,6 @@ function handleAnswer() {
     showElement(gameResultEl);
     gameResultEl.innerHTML = "Correct!";
     score++;
-    console.log(score);
   } else {
     showElement(gameResultEl);
     gameResultEl.innerHTML = "False!";
