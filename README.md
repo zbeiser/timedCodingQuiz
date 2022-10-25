@@ -7,11 +7,11 @@ The objective of this project was to create a webpage application using HTML, CS
 N/A
 
 ## Usage
-Website's URL: 
+Website's URL: https://zbeiser.github.io/timedCodingQuiz/
 
 Upon loading the page, you can click the "Start Game" button to begin the quiz. You can click the buttons to answer questions, monitor your current score and timer, submit your initials with your final score, and view and clear highscores.
 
-![Screenshot](?raw=true)
+![Screenshot](https://github.com/zbeiser/timedCodingQuiz/blob/main/assets/timedCodingQuiz.png?raw=true)
 
 ## Credits
 Thank you to the UW Coding Bootcamp staff and students, as well as W3Schools and Mozilla MDN Web Docs for providing numerous educational resources during the development of this project.
