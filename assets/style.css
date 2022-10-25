@@ -106,3 +106,7 @@ input {
   border-style: solid;
   border-color: black;
 }
+
+#viewHighscores {
+  margin-top: 3rem;
+}

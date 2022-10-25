@@ -14,6 +14,7 @@ var highScoresEl = document.querySelector(".highScores");
 var scoreEl = document.querySelector("#score");
 var finalScoreEl = document.querySelector("#gameEnd_score");
 var gameResultEl = document.querySelector(".gameBoard_results");
+var viewHighscoresEl = document.querySelector("#viewHighscores");
 
 ////// Declare variables: state. Highscores, current score, timer, time left, and question counter.
 
@@ -286,7 +287,7 @@ function showElement(el) {
   el.classList.remove("hide");
 }
 
-// Event: Update the highscore list from the localStorage. This gets called in the init function on page load.
+// Updates the highscore list from the localStorage. This gets called in the init function on page load.
 // The if statement makes sure the scoreArray doesn't log an error as null if the localStorage is empty.
 
 function updateHighscores() {
@@ -309,6 +310,19 @@ function updateHighscores() {
     document.getElementById("highScores_display_score").appendChild(score);
   }
 }
+
+// Event: View highscore page by pressing a button at any time. Resets the timer so
+// you can sucessfully start game again.
+
+function viewHighscores() {
+  clearInterval(timer);
+  timer = null;
+  showElement(highScoresEl);
+  hideElement(gameEndEl);
+  hideElement(gameBoardEl);
+  hideElement(startGameEl);
+}
+viewHighscoresEl.addEventListener("click", viewHighscores);
 
 // Load the game start screen on page load.
 init();
