@@ -251,6 +251,7 @@ function handleHighScore() {
 
   document.getElementById("highScores_display_score").appendChild(score);
 
+  hideElement(viewHighscoresEl);
   hideElement(gameEndEl);
   showElement(highScoresEl);
 }
@@ -269,6 +270,7 @@ clearScoresButtonEl.addEventListener("click", handleClearScores);
 function handleGameRestart() {
   hideElement(highScoresEl);
   showElement(startGameEl);
+  showElement(viewHighscoresEl);
   timerEl.textContent = "Time left: " + 60;
   questionIndex = 0;
   score = 0;
@@ -321,6 +323,7 @@ function viewHighscores() {
   hideElement(gameEndEl);
   hideElement(gameBoardEl);
   hideElement(startGameEl);
+  hideElement(viewHighscoresEl)
 }
 viewHighscoresEl.addEventListener("click", viewHighscores);
 
